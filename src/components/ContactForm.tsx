@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
@@ -20,8 +20,9 @@ export function ContactForm({ contact, onSubmit }: IContactFormProps) {
   const [name, setName] = useState(contact?.name ?? '');
   const [email, setEmail] = useState(contact?.email ?? '');
 
-  function handleSubmit() {
-    onSubmit?.({ name, email });
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    onSubmit?.({ name, email })
   }
 
   return (
